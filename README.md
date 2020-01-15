@@ -4,3 +4,6 @@
 **AQM Evaluation Suite** automates the cycle of simulation setup to results collection in ns-3. It closely follows the recommendations provided in **RFC 7928** to setup the simulation scenarios and collects results in the suggested formats. A user can choose to either run an individual scenario from the set of scenarios provided in the suite, or run all scenarios at once. Results for each scenario are systematically stored in text and graphical formats.
 # Architecture of AQM Evaluation Suite
 The suite is implemented in src/aqm-eval-suite directory.
+# Model
+<src/aqm-eval-suite/model> contains an implementation of the following three primary classes:
+- class :cpp:class:<EvaluationTopology> : This class has three major functionalities.
