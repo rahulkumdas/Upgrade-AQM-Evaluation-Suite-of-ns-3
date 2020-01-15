@@ -6,4 +6,5 @@
 The suite is implemented in src/aqm-eval-suite directory.
 # Model
 <src/aqm-eval-suite/model> contains an implementation of the following three primary classes:
-- class :cpp:class:<EvaluationTopology> : This class has three major functionalities.
+- class :cpp:class: <EvaluationTopology> : This class has three major functionalities.
+- Creating the topology: It sets up a point-to-point dumbbell topology by using :cpp:class:PointToPointDumbbellHelper: with required number of nodes, and configures the data rate and for all the links. It also installs the desired queue discipline on the router node.
