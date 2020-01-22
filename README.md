@@ -20,3 +20,17 @@ The suite is implemented in `src/aqm-eval-suite` directory.
  # Utils
  `src/aqm-eval-suite/utils` directory provides four Python scripts that take performance metrics computed in the suite as input, and generate a graph with Queuing Delay as the X-axis against Goodput as the Y-axis. The graph depicts an ellipse which is plotted as per the guidelines mentioned in the RFC and [Remy]. The co-variance between the queuing delay and goodput is determined by the orientation of the ellipse, and helps to analyze the effect of traffic load on Goodput and Queuing Delay.
  # Examples
+`src/aqm-eval-suite/examples` directory provides a set of programs, each corresponding to a specific scenario listed in RFC 7928. Each program can be run individually. Alternatively, `aqm-eval-suite-runner.cc` allows the user to run all scenarios at once.
+# User interaction with the suite
+Users can learn about the list of scenarios available in the suite from `src/aqm-eval/examples` directory. The programs can be run in a usual way. For example, `aggressive-transport-sender.cc` is equivalent to the scenario described in Section 5.2 of the RFC. Assuming examples have been enabled during configure, the following commands would run `aggressive-transport-sender.cc`
+
+    ./waf --run "aqm-eval-suite-runner --number=5.2"
+
+or
+
+    ./waf --run "aqm-eval-suite-runner --name=AggressiveTransportSender"
+
+To run all scenarios at once, the following command could be used:
+
+    ./waf --run "aqm-eval-suite-runner --name=All"
+ 
