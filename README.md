@@ -34,3 +34,109 @@ To run all scenarios at once, the following command could be used:
 
     ./waf --run "aqm-eval-suite-runner --name=All"
  
+## Simulating additional AQM algorithms using this suite
+
+* By default, the suite evaluates AQM algorithms implemented in |ns3|. To
+  simulate additional AQM algorithms, such as the ones designed by the user,
+  the ``addAQM`` method of ``ScenarioImpl`` can be used in the scenarios
+  available in ``src/aqm-eval-suite/examples``. For example, to add a new AQM
+  of typeId ``ns3::ExampleQueueDisc`` in ``aggressive-transport-sender.cc``,
+  ``CreateScenario`` method can be modified as shown in the code below:
+
+
+      EvaluationTopology
+      AggressiveTransportSender::CreateScenario (std::string aqm)
+      {
+        .
+        .
+        addAQM ("ns3::ExampleQueueDisc");
+        EvaluationTopology et ("AggressiveTransportSender", nflow, pointToPoint, aqm, 1460);
+        .
+        .
+      }
+
+## Scope and limitations of the suite
+
+* All scenarios described in Section 5, 6 and 8 of RFC 7928 are supported.
+
+* Scenarios listed in Section 7 and 9 are not yet supported.
+
+* Currently, the suite cannot be used to study the interaction of queue disciplines
+  with Explicit Congestion Notification (ECN) and Scheduling Algorithms.
+
+* Multi-AQM scenarios are not yet supported.
+
+## Packages Required for Processing Metrics and Graphing
+
+Following are the packages required for the suite and their installation instruction in Ubuntu
+
+* python-pip: apt-get install python-pip
+
+* python numpy: pip install numpy
+
+* gnuplot: apt-get install gnuplot-qt
+
+* imagemagick (optional package for ns-3): apt-get install imagemagick
+
+
+# The Network Simulator, Version 3
+
+Much more substantial information about **ns-3** can be found [here](http://www.nsnam.org)
+
+## 1) An Open Source project
+
+**NS-3** is a free open source project aiming to build a discrete-event network simulator targeted for simulation research and education.   
+This is a collaborative project; we hope that the missing pieces of the models we have not yet implemented will be contributed by the community in an open collaboration process.
+ 
+The process of contributing to the ns-3 project varies with the people involved, the amount of time they can invest and the type of model they want to work on, but the current process that the project tries to follow is described [here](http://www.nsnam.org/developers/contributing-code/)
+
+This README excerpts some details from a more extensive tutorial that is maintained [here](http://www.nsnam.org/documentation/latest/)
+
+## 2) Building ns-3
+
+The code for the framework and the default models provided by **ns-3** is built as a set of libraries. User simulations are expected to be written as simple programs that make use of these **ns-3** libraries.
+ 
+To build the set of default libraries and the example programs included in this package, you need to use the tool **waf**. Detailed information on how to use waf is included in the file *doc/build.txt*
+
+However, the real quick and dirty way to get started is to type the command
+
+    ./waf configure --enable-examples     
+
+followed by
+  
+    ./waf 
+  
+in the directory which contains this README file. The files built will be copied in the *build/* directory.
+
+The current codebase is expected to build and run on the set of platforms listed in the RELEASE_NOTES file.
+ 
+Other platforms may or may not work: we welcome patches to improve the portability of the code to these other platforms. 
+
+## 3) Running ns-3
+ 
+On recent Linux systems, once you have built **ns-3** (with examples enabled), it should be easy to run the sample programs with the following command, such as:
+
+    ./waf --run simple-global-routing
+
+That program should generate a *simple-global-routing.tr* text trace file and a set of simple-global-routing-xx-xx.pcap binary pcap trace files, which can be read by *tcpdump -tt -r filename.pcap* The program source can be found in the *examples/routing* directory.
+
+## 4) Getting access to the ns-3 documentation
+
+Once you have verified that your build of ns-3 works by running the simple-point-to-point example as outlined in **3)** above, it is quite likely that you will want to get started on reading some **ns-3** documentation. 
+
+All of that documentation should always be available from
+the **ns-3** [website](http://www.nsnam.org/documentation/).
+
+This documentation includes:
+
+  - a tutorial
+ 
+  - a reference manual
+
+  - models in the ns-3 model library
+
+  - a wiki for user-contributed tips [here](http://www.nsnam.org/wiki/)
+
+  - API documentation generated using doxygen: this is
+    a reference manual, most likely not very well suited 
+    as introductory [text](http://www.nsnam.org/doxygen/index.html)
