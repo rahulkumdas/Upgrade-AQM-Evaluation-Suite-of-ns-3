@@ -140,3 +140,12 @@ This documentation includes:
   - API documentation generated using doxygen: this is
     a reference manual, most likely not very well suited 
     as introductory [text](http://www.nsnam.org/doxygen/index.html)
+
+## 5) Working with the development version of ns-3
+
+If you want to download and use the development version of **ns-3**, you need to use the tool 'mercurial'. A quick and dirty cheat sheet is included in *doc/mercurial.txt* but reading through the mercurial tutorials included on the mercurial website is usually a good idea if you are not familiar with it.
+
+If you have successfully installed mercurial, you can get a copy of the development version with the following command:
+      
+      hg clone http://code.nsnam.org/ns-3-dev
+ 
